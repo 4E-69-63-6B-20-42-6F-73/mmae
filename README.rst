@@ -33,7 +33,7 @@ The package is compatible with Python 2.7 and 3.x and additionally requires
 NumPy, Six and TensorFlow or Keras.  It was tested with Python 2.7.17,
 Python 3.8.2, NumPy 1.18.4, Six 1.15.0, TensorFlow 2.2.0 and Keras 2.3.1. 
 
-It is also tested with python 3.10.5 and TensorFlow 2.14.0 and Keras 2.14. 
+It is also tested with python 3.11 and tensorflow 1.17 and keras 3.5.0
 
 
 Installation
