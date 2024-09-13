@@ -195,9 +195,7 @@ class MultimodalAutoencoder(Model):
         target_tensors = self._rename_output_keys(target_tensors)
         super(MultimodalAutoencoder,
               self).compile(optimizer=optimizer, loss=loss,
-                            loss_weights=loss_weights,
-                            sample_weight_mode=sample_weight_mode,
-                            target_tensors=target_tensors)
+                            loss_weights=loss_weights)
 
     def fit(self, data=None, batch_size=None, epochs=1, verbose=1,
             callbacks=None, validation_split=0.0, validation_data=None,

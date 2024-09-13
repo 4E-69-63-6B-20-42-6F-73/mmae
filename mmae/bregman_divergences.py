@@ -22,6 +22,7 @@ This module implements common Bregman divergences.
 from __future__ import division
 
 import abc
+import tensorflow as tf
 try:
     from tensorflow.keras import backend as K
     from tensorflow.keras.losses import LossFunctionWrapper
@@ -32,9 +33,10 @@ except ImportError:
         from keras.losses import LossFunctionWrapper
         from keras.utils.losses_utils import Reduction
     except ImportError:
-        from keras import backend as K
+        from  tf_keras import backend as K
         from keras.src.losses import LossFunctionWrapper
-        from keras.losses import Reduction
+        from keras._tf_keras.keras.losses import Reduction
+
 
 class BregmanDivergence(LossFunctionWrapper):
     """
