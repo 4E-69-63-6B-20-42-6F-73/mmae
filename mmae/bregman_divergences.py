@@ -27,10 +27,14 @@ try:
     from tensorflow.keras.losses import LossFunctionWrapper
     from tensorflow.keras.utils.losses_utils import Reduction
 except ImportError:
-    from keras import backend as K
-    from keras.losses import LossFunctionWrapper
-    from keras.utils.losses_utils import Reduction
-
+    try:
+        from keras import backend as K
+        from keras.losses import LossFunctionWrapper
+        from keras.utils.losses_utils import Reduction
+    except ImportError:
+        from keras import backend as K
+        from keras.src.losses import LossFunctionWrapper
+        from keras.losses import Reduction
 
 class BregmanDivergence(LossFunctionWrapper):
     """
