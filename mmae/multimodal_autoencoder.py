@@ -50,7 +50,6 @@ except ImportError:
 
 from . import bregman_divergences
 
-
 class MultimodalAutoencoder(Model):
     """
     This class represents a multimodal autoencoder.  By default, the central
@@ -107,6 +106,10 @@ class MultimodalAutoencoder(Model):
     def __init__(self, input_shapes, hidden_dims, output_activations='linear',
                  dropout_rates=None, activity_regularizers=None,
                  **unimodal_kwargs):
+        
+        self.input_shapes = input_shapes
+        self.hidden_dims = hidden_dims
+
         # Make sure that dropout_rates and activity_regularizers are lists
         if dropout_rates is None:
             # No dropout if no rates specified
@@ -773,3 +776,20 @@ class MultimodalAutoencoder(Model):
 
         """
         return name + '_reconstruction'
+
+    def get_config(self):
+
+        config = super().get_config().copy()
+        config.update({
+           "input_shapes": self.input_shapes,
+           "hidden_dims": self.hidden_dims
+        })
+        print(config)
+        return config
+    
+    @classmethod
+    def from_config(cls, config):
+        print(config)
+        input_shapes = config.pop('input_shapes')
+        hidden_dims = config.pop('hidden_dims')
+        return cls(input_shapes=input_shapes, hidden_dims=hidden_dims, **config)
